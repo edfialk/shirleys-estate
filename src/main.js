@@ -13,7 +13,6 @@ import firebase from 'firebase';
 import config from './config';
 firebase.initializeApp(config)
 
-
 Vue.config.productionTip = false
 
 Vue.filter('currency', value => {
