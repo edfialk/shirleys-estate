@@ -1,0 +1,7 @@
+-- need
+notification module
+
+
+https://cdn.abetterlemonadestand.com/wp-content/uploads/2017/08/Tile-Mate-Product-Page-Design-Example.jpg
+
+https://stackoverflow.com/questions/39567327/how-to-create-thumbnail-carousel-with-image-previews-in-slick-js

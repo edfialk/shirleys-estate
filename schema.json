@@ -1,0 +1,54 @@
+{
+  "type": "array",
+  "minItems": 20,
+  "maxItems": 30,
+  "items": {
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "id",
+      "name",
+      "description",
+      "price",
+      "tags"
+    ],
+    "properties": {
+      "id": {
+        "type": "integer",
+        "minimum": "1",
+        "maximum": "50"
+      },
+      "name": {
+        "type": "string",
+        "faker": "commerce.productName"
+      },
+      "description": {
+        "type": "string",
+        "faker": "random.words"
+      },
+      "price": {
+        "type": "number",
+        "faker": "commerce.price"
+      },
+      "tags": {
+        "type": "array",
+        "minItems": 0,
+        "maxItems": 5,
+        "items": {
+          "enum": [
+            "kitchen",
+            "bathroom",
+            "furniture",
+            "bedroom",
+            "toy",
+            "book",
+            "antique"
+          ]
+        }
+      }
+    }
+  }
+}

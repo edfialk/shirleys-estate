@@ -1,0 +1,44 @@
+@import '~bulma/css/bulma.min.css';
+@import url('https://fonts.googleapis.com/css?family=Chivo|Playfair+Display:400,400i');
+
+html,
+body,
+#app {
+  height: 100%;
+}
+.is-spacebetween {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bg-light {
+    background-color: #EEE;
+}
+// .label {
+//     font-size: 1.25rem;
+// }
+.move-down {
+    margin-top: 0.75rem;
+}
+.mr-top-1-mobile {
+    @media screen and (max-width: 1022px) {
+        margin-top: 1rem;
+    }
+}
+img {
+    display: block;
+    width: 100%;
+}
+.help.is-danger {
+    font-size: 1.25rem;
+}
+.navbar {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.8);
+    a {
+        color: rgba(0,0,0,0.8);
+    }
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+}
