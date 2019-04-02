@@ -140,7 +140,7 @@ export default {
             e.preventDefault();
 
             const items = this.cart.map(item => {
-                return item.name + ' for ' + this.$options.filters.currency(item.price);
+                return "<a href='http://shirleys-estate.com/i/" + item.id + "'>" + item.name + '</a> for ' + this.$options.filters.currency(item.price);
             }).join("<br>\n");
 
             let total = this.cart.reduce( (acc, item) => {
@@ -148,7 +148,7 @@ export default {
             }, 0);
             total = this.$options.filters.currency(total);
 
-            fetch('https://mailthis.to/edfialk@gmail.com', {
+            fetch('https://mailthis.to/edfialk', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
