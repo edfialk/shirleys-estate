@@ -1,31 +1,60 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view
+      :cart="cart"
+      @addToCart="addToCart"
+      @removeFromCart="removeFromCart"
+      @clearCart="clearCart"
+    />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+<script>
+export default {
+  data() {
+    return {
+      cart: []
+    }
+  },
+  mounted() {
+    if (localStorage.getItem('cart')){
+      this.cart = JSON.parse(localStorage.getItem('cart'));
+    }
+  },
+  methods: {
+    addToCart(item) {
+      if (this.cart.find( x => x.id == item.id)){
+        return;
+      }
+      this.cart.push(item);
+      this.saveCart();
+    },
+    removeFromCart(item) {
+      this.cart = this.cart.filter(x => x.id !== item.id);
+      this.saveCart();
+    },
+    clearCart() {
+      this.cart = [];
+      this.saveCart();
+    },
+    saveCart() {
+      //i don't know why this is required, but stringify either skips ID or pictures without it
+      const temp = [];
+      this.cart.forEach(item => {
+        const { id, name, description, price } = item;
+        const tempItem = { id, name, description, price, pictures: [] };
+        tempItem.pictures = item.pictures;
+        temp.push(tempItem);
+      }, this);
+      localStorage.setItem('cart', JSON.stringify(temp));
+    }
+  }
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style lang="scss">
+
+@import './styles/style.scss';
+
 </style>
