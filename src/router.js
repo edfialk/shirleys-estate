@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 Vue.use(Router)
 
@@ -12,11 +13,6 @@ const router = new Router({
       path: '/',
       name: 'home',
       component:() => import(/* webpackChunkName: "index" */ './views/Home.vue'),
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
     },
     {
       path: '/cart',

@@ -72,7 +72,9 @@
 
 <script>
 import db from "../db";
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/storage';
 
 export default {
 	name: "Home",

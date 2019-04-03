@@ -76,7 +76,8 @@
 
 <script>
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/storage';
 import db from "../db";
 import ItemMixins from '../mixins/ItemMixins';
 import swal from 'sweetalert';

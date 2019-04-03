@@ -4,7 +4,7 @@
         <section class="section hero is-fullheight-with-navbar bg-lighter">
             <div v-if="item" class="container">
                 <div class="columns is-flex is-reverse-touch">
-                     <div class="column is-two-thirds pictures">
+                    <div class="column is-two-thirds-desktop pictures">
                         <carousel :perPage="1" :navigationEnabled="true" paginationColor="c7c7c7" v-if="item.pictures.length > 1">
                             <slide v-for="(picture, i) in item.pictures" :key="i">
                                 <img :src="picture.src">
@@ -43,10 +43,12 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/storage';
 import db from '../db';
 import NavBar from '../components/NavBar';
 import { Carousel, Slide } from 'vue-carousel';
+import swal from 'sweetalert';
 
 export default {
     props: ["cart"],
@@ -76,6 +78,17 @@ export default {
         addToCart() {
             this.isInCart = true;
             this.$emit("addToCart", this.item);
+            swal(this.item.name + " has been added to your cart.", {
+                buttons: {
+                    cancel: "View Cart",
+                    success: "Stay Here"
+                }
+            }).then(value => {
+                console.log(value);
+                if (value == "cancel") {
+                    this.$router.push('/cart');
+                }
+            });
         },
         removeFromCart() {
             this.isInCart = false;

@@ -9,11 +9,11 @@ import router from './router'
 import FontAwesomeIcon from './assets/fontawesome';
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import config from './config';
-firebase.initializeApp(config)
+firebase.initializeApp(config);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.filter('currency', value => {
   let val = (value/1).toFixed(2);
