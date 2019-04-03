@@ -5,19 +5,10 @@
 				<div class="container">
 					<div class="columns is-vcentered">
 						<div class="column is-8 is-offset-2">
-							<h1 class="title is-1 is-size-2-mobile is-spaced">Welcome to Shirley's Estate</h1>
-							<h2 class="subtitle is-3 is-size-4-mobile">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus tenetur eum dicta quod quo, autem facere minus consectetur cum odio sint laudantium libero maxime illo, iste ullam, fugiat soluta reiciendis.</h2>
-							<h2 class="subtitle is-3 is-size-4-mobile">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
-							<!-- <div class="field has-addons ">
-								<div class="control is-expanded">
-									<input class="input" type="text" placeholder="Search Shirley's Estate">
-								</div>
-								<div class="control">
-									<a class="button is-primary">
-										<font-awesome-icon icon="search" />
-									</a>
-								</div>
-							</div> -->
+							<h1 class="title is-1 is-size-2-mobile is-spaced">Hello. I'm Shirley, and this is my stuff.</h1>
+							<h2 class="subtitle is-3 is-size-4-mobile">These items are for sale.<br>Cash only. No negotiation. Priced to go.</h2>
+							<h2 class="subtitle is-3 is-size-4-mobile">We can meet outside the<br><a href="https://goo.gl/maps/qaghmjfJB5u" class="has-text-grey-lighter">Mountain Brook Police Department</a>.</h2>
+							<h2 class="subtitle is-3 is-size-4-mobile">Take a look around. Add the things you like to your cart, and we will find a good time to meet.</h2>
 						</div>
 					</div>
 				</div>
@@ -42,10 +33,10 @@
 			</div>
 		</div>
 		<section class="cards container">
-			<div class="columns is-multiline">
+			<div class="columns is-multiline is-mobile">
 				<div v-for="item of items"
 					:key="item.id"
-					class="column is-one-quarter">
+					class="column is-one-quarter-desktop is-half-mobile">
 					<router-link :to="'/i/' + item.id">
 						<div class="card">
 							<div class="card-image">
@@ -140,6 +131,11 @@ export default {
 	}
 	.title, .subtitle {
 		color: white;
+		a {
+			// color: hsl(0, 0%, 96%);
+			// @extend .has-text-grey-lighter;
+			// text-decoration: underline;
+		}
 	}
 	.subtitle {
 		font-family: 'Chivo', sans-serif;

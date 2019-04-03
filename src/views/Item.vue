@@ -5,10 +5,16 @@
             <div v-if="item" class="container">
                 <div class="columns is-flex is-reverse-touch">
                     <div class="column is-two-thirds-desktop pictures">
-                        <carousel :perPage="1" :navigationEnabled="true" paginationColor="c7c7c7" v-if="item.pictures.length > 1">
+                        <carousel
+                            :perPage="1"
+                            :navigationEnabled="true"
+                            paginationColor="#7b7b7b"
+                            :navigationClickTargetSize="15"
+                            v-if="item.pictures.length > 1">
                             <slide v-for="(picture, i) in item.pictures" :key="i">
                                 <img :src="picture.src">
                             </slide>
+                            <!-- navigationNextLabel='<i class="fa fa-chevron-right fa-3x" aria-hidden="true"></i>' -->
                         </carousel>
                         <img :src="item.pictures[0].src" v-else-if="item.pictures.length == 1">
                     </div>
@@ -78,14 +84,15 @@ export default {
         addToCart() {
             this.isInCart = true;
             this.$emit("addToCart", this.item);
-            swal(this.item.name + " has been added to your cart.", {
+            swal({
+                title: this.item.name + " has been added to your cart.",
+                icon: "success",
                 buttons: {
                     cancel: "View Cart",
                     success: "Stay Here"
                 }
-            }).then(value => {
-                console.log(value);
-                if (value == "cancel") {
+            }).then(stay => {
+                if (!stay) {
                     this.$router.push('/cart');
                 }
             });
@@ -117,4 +124,9 @@ export default {
     .info {
         padding: 2rem;
     }
+    .VueCarousel-navigation-button {
+        font-size: 1.5rem;
+    }
+
+
 </style>

@@ -29,7 +29,7 @@
                     </article>
                     <div v-if="cart.length == 0">
                         <h2 class="subtitle">You don't have anything in your cart.</h2>
-                        <h2 class="subtitle"><router-link to="/">Browse Our Items</router-link> to buy something.</h2>
+                        <h2 class="subtitle"><router-link to="/">Browse My Stuff</router-link> to buy something.</h2>
                     </div>
                 </div>
                 <div class="box" v-if="cart.length > 0">
