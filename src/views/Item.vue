@@ -1,11 +1,19 @@
 <template>
     <div>
         <NavBar :cart="cart" />
-        <section class="section hero is-fullheight-with-navbar">
+        <section class="section hero is-fullheight-with-navbar bg-lighter">
             <div v-if="item" class="container">
-                <div class="columns">
-                    <div class="column info is-hidden-desktop">
-                        <!-- <div class="box"> -->
+                <div class="columns is-flex is-reverse-touch">
+                     <div class="column is-two-thirds pictures">
+                        <carousel :perPage="1" :navigationEnabled="true" paginationColor="c7c7c7" v-if="item.pictures.length > 1">
+                            <slide v-for="(picture, i) in item.pictures" :key="i">
+                                <img :src="picture.src">
+                            </slide>
+                        </carousel>
+                        <img :src="item.pictures[0].src" v-else-if="item.pictures.length == 1">
+                    </div>
+                    <div class="column info">
+                        <div class="box">
                             <h1 class="title">{{ item.name }}</h1>
                             <h2 class="subtitle">{{ item.description }}</h2>
                             <h2 class="subtitle">{{ item.price | currency }}</h2>
@@ -25,61 +33,8 @@
                                     @click="removeFromCart"
                                     v-if="isInCart"
                                     >I No Longer Want This</button>
-                            </div>
-                        <!-- </div> -->
-                    </div>
-<!--                     <div class="column thumbs" v-if="item.pictures.length > 0">
-                        <img :src="picture.src" v-for="(picture, i) in item.pictures" :key="i" @click="activePicture = picture">
-                    </div> -->
-<!--                     <div class="column is-half is-hidden-touch" v-if="activePicture">
-                        <img :src="activePicture.src">
-                    </div> -->
-                    <div class="column is-two-thirds pictures">
-<!--                         <div class="pictures is-flex is-spacebetween">
-                            <div>
-                                <font-awesome-icon icon="chevron-left" size="2x" />
-                            </div>
- -->
-                            <carousel :perPage="1" :navigationEnabled="true">
-                                <slide v-for="(picture, i) in item.pictures" :key="i">
-                                    <img :src="picture.src">
-                                </slide>
-                            </carousel>
-<!--                             <div>
-                                <font-awesome-icon icon="chevron-right" size="2x" class="is-pulled-right"/>
                             </div>
                         </div>
- --><!--                         <div class="carousel">
-                            <carousel :perPage="1">
-                                <slide v-for="(picture, i) in item.pictures" :key="i">
-                                    <img :src="picture.src">
-                                </slide>
-                            </carousel>
-                        </div> -->
-                    </div>
-                    <div class="column info is-hidden-touch">
-                        <!-- <div class="box"> -->
-                            <h1 class="title">{{ item.name }}</h1>
-                            <h2 class="subtitle">{{ item.description }}</h2>
-                            <h2 class="subtitle">{{ item.price | currency }}</h2>
-                            <div class="buttons">
-                                <router-link
-                                    :to="'/edit/' + item.id"
-                                    class="button is-fullwidth"
-                                    v-if="user"
-                                    >Edit This Item</router-link>
-                                <button
-                                    class="button is-primary is-fullwidth"
-                                    @click="addToCart"
-                                    v-if="!isInCart"
-                                    >I WOULD LIKE TO BUY THIS</button>
-                                <button
-                                    class="button is-fullwidth"
-                                    @click="removeFromCart"
-                                    v-if="isInCart"
-                                    >I No Longer Want This</button>
-                            </div>
-                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -131,20 +86,22 @@ export default {
 
 </script>
 
-<style lang="scss">
-    // .thumbs img {
-    //     margin-bottom: 1.5rem;
-    //     cursor: pointer;
-    // }
+<style lang="scss" >
+
+    .is-reverse-touch {
+        @media screen and (max-width: 1023px) {
+            flex-direction: column-reverse;
+        }
+    }
     .pictures {
         margin-bottom: 1rem;
         padding: 0 2rem;
         img {
-            max-width: 300px;
+            // max-width: 300px;
             margin: 0 auto;
         }
     }
     .info {
-        padding: 0 2rem;
+        padding: 2rem;
     }
 </style>
