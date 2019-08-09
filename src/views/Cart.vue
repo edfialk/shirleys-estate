@@ -99,9 +99,9 @@ export default {
     data() {
         return {
             showContactForm: false,
-            name: 'Test Name',
-            contact: 'edfialk@gmail.com',
-            message: 'Test Message'
+            name: '',
+            contact: '',
+            message: ''
         }
     },
 
